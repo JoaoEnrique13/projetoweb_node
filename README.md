@@ -1,5 +1,3 @@
-CRUD com Node, Express, Seqelize e Handlebars
-
 ```cmd
 git clone https://github.com/JoaoEnrique13/projetoweb_node/
 cd projetoweb_node
