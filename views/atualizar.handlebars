@@ -1,0 +1,176 @@
+
+<div class="max-w-screen-md mx-auto flex p-6 mt-15">
+  <form method="post" action="/atualizar" onsubmit="return validarFormulario()"  class="p-10 w-full relative overflow-x-auto shadow-md sm:rounded-lg">
+
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full px-3 mb-6 md:mb-0">
+        <div class="text-gray-700 mb-2">
+          <article class="text-wrap ...">
+            <h1 class="text-center mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Editar Agendamento</span> 
+            </h1>
+            <p>Agendamentos de Potenciais Clientes</p>
+            <p>Sistema utilizado para Agendamentos de serviços</p>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    {{!-- id --}}
+    <input class="hidden" id="id"  name="id" type="text" value="{{ agendamento.id }}" placeholder="id">
+
+
+    {{!-- NOME --}}
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full px-3 mb-6 md:mb-0">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="nome">
+          Nome
+        </label>
+        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500" id="nome"  name="nome" type="text" value="{{ agendamento.nome }}" placeholder="Nome">
+        <p class="mt-2 hidden error-nome text-sm text-red-600 dark:text-red-500"><span class="font-medium">O nome é obrigatório!</p>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap grid-cols-2 -mx-3 mb-6">
+        {{!-- TELEFONE --}}
+        <div class="md:w-1/2 px-3">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="telefone">
+                Telefone
+            </label>
+            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500" value="{{ agendamento.telefone }}" name="telefone" id="telefone" type="text" placeholder="(11) 09872-9087">
+            <p class="mt-2 hidden error-telefone text-sm text-red-600 dark:text-red-500"><span class="font-medium">O telefone é obrigatório!</p>
+        </div>
+
+        {{!-- ORIGEM --}}
+        <div class="md:w-1/2 px-3">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="origem">
+            Origem
+            </label>
+            <div class="relative">
+            <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:border-gray-500" value="{{ agendamento.origem }}" id="origem" name="origem">
+                <option value="Origem">Origem</option>
+                <option {{#if (eq agendamento.origem "Celular" ignoreCase=true)}} selected {{/if}} value="Celular">Celular</option>
+                <option {{#if (eq agendamento.origem "Fixo" ignoreCase=true)}} selected {{/if}} value="Fixo">Fixo</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+            </div>
+            </div>
+            <p class="mt-2 hidden error-origem text-sm text-red-600 dark:text-red-500"><span class="font-medium">A origem é obrigatória!</p>
+        </div>
+    </div>
+
+    {{!-- DATA DE CONTATO --}}
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full px-3">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="data_contato">
+          Data de contato
+        </label>
+        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500" id="data_contato" name="data_contato" type="date"  value="{{formatDateYMD agendamento.data_contato}}">
+        <p class="mt-2 hidden error-data_contato text-sm text-red-600 dark:text-red-500"><span class="font-medium">A data é obrigatória!</p>
+      </div>
+    </div>
+
+    {{!-- OBSERVACAO --}}
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full px-3">
+        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="observacao">
+          Observação
+        </label>
+        <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500 resize-none rounded-md" name="observacao" id="observacao">{{ agendamento.observacao }}</textarea>
+        <p class="mt-2 hidden error-observacao text-sm text-red-600 dark:text-red-500"><span class="font-medium">A observação é obrigatória!</p>
+      </div>
+    </div>
+
+    {{!-- SALVAR --}}
+    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full px-3">
+      <button class="w-full bg-gray-800 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">
+        Salvar
+      </button>
+      </div>
+    </div>
+  </form>
+
+  <script>
+    function validarDados(){
+        var nome = document.getElementById("nome");
+        var telefone = document.getElementById("telefone");
+        var origem = document.getElementById("origem");
+        var data_contato = document.getElementById("data_contato");
+        var observacao = document.getElementById("observacao");
+        var nomeErro = 0;
+        var erroTelefone = 0;
+        var erroOrigem = 0;
+        var erroDataContato = 0;
+        var erroObservacao = 0;
+
+        if (nome.value === "") {
+            document.querySelector('.error-nome').style.display = 'block';
+            nome.classList.add('border-red-500');
+            nomeErro = 1;
+        } else {
+            nomeErro = 0;
+            document.querySelector('.error-nome').style.display = 'none'; // Oculta o erro se o campo estiver preenchido
+            nome.classList.remove('border-red-500');
+        }
+
+        if (telefone.value === "") {
+            document.querySelector('.error-telefone').style.display = 'block';
+            telefone.classList.add('border-red-500');
+            erroTelefone = 1;
+        } else {
+            erroTelefone = 0;
+            document.querySelector('.error-telefone').style.display = 'none'; // Oculta o erro se o campo estiver preenchido
+            telefone.classList.remove('border-red-500');
+        }
+
+        
+        if (origem.value == "Origem") {
+            document.querySelector('.error-origem').style = 'display: block'
+            origem.classList.add('border-red-500')
+            erroOrigem = 1
+        }else{
+            document.querySelector('.error-origem').style.display = 'none'; // Oculta o erro se o campo estiver preenchido
+            origem.classList.remove('border-red-500');
+            erroOrigem = 0
+        }
+
+        
+        if (data_contato.value === "") {
+            document.querySelector('.error-data_contato').style = 'display: block'
+            data_contato.classList.add('border-red-500')
+            erroDataContato = 1
+        }else{
+            document.querySelector('.error-data_contato').style.display = 'none'; // Oculta o erro se o campo estiver preenchido
+            data_contato.classList.remove('border-red-500');
+            erroDataContato = 0
+        }
+
+        if (observacao.value === "") {
+            document.querySelector('.error-observacao').style = 'display: block'
+            observacao.classList.add('border-red-500')
+            erroObservacao = 1
+        }else{
+            document.querySelector('.error-observacao').style.display = 'none'; // Oculta o erro se o campo estiver preenchido
+            observacao.classList.remove('border-red-500');
+            erroObservacao = 0
+        }
+
+        if (nomeErro || erroTelefone || erroOrigem || erroDataContato || erroObservacao) {
+            return false; // Impede o envio do formulário se a validação falhar
+        }
+
+        return true
+    }
+
+
+    function validarFormulario() {
+        event.preventDefault();
+        if (validarDados()) {
+          console.log('hbvvha')
+            event.target.submit();
+        }
+    }
+</script>
+</div>
