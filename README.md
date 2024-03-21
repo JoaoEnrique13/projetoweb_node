@@ -1,3 +1,32 @@
+CRUD com Node, Express, Seqelize e Handlebars
+
+```cmd
+git clone https://github.com/JoaoEnrique13/projetoweb_node/
+cd projetoweb_node
+node app.js
+```
+
+Saida:
+```cmd
+Servidor Ligado
+http://localhost/8081
+```
+
+
+Dependencias usadas:
+```cmd
+npm install express --save
+```
+```cmd
+npm install express-handlebars --save
+```
+```cmd
+npm install sequelize --save
+```
+```cmd
+npm install mysql2 --save
+```
+
 ## Create
 ![image](https://github.com/JoaoEnrique13/projetoweb_node/assets/99426704/add78262-efd7-4af1-b46f-89770d1aad54)
 
