@@ -9,7 +9,7 @@ node app.js
 Saida:
 ```cmd
 Servidor Ligado
-http://localhost/8081
+http://localhost:8081
 ```
 
 <!--
