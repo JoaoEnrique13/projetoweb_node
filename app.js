@@ -113,5 +113,5 @@ app.post('/atualizar', async (req, res) =>{
 
 app.listen(port, function(){
     console.log('Servidor Ligado');
-    console.log('http://localhost/' + port);
+    console.log('http://localhost:' + port);
 })
