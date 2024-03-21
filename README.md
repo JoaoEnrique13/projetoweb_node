@@ -12,7 +12,7 @@ Servidor Ligado
 http://localhost/8081
 ```
 
-
+<!--
 Dependencias usadas:
 ```cmd
 npm install express --save
@@ -25,7 +25,7 @@ npm install sequelize --save
 ```
 ```cmd
 npm install mysql2 --save
-```
+```-->
 
 ## Create
 ![image](https://github.com/JoaoEnrique13/projetoweb_node/assets/99426704/add78262-efd7-4af1-b46f-89770d1aad54)
