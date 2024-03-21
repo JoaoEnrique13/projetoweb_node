@@ -1,7 +1,7 @@
 ## Create
 ![Captura de tela 2024-03-21 144444](https://github.com/JoaoEnrique13/projetoweb_node/assets/99426704/4df5fad6-6e8d-4d7c-b416-7d9bf4e1e4d6)
 
-## validation
+## Validation
 ![Captura de tela 2024-03-21 145939](https://github.com/JoaoEnrique13/projetoweb_node/assets/99426704/597537ad-cc34-4fae-9e9c-8eba94c8a9bb)
 
 ## Read
