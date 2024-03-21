@@ -5,10 +5,8 @@ git clone https://github.com/JoaoEnrique13/projetoweb_node/
 cd projetoweb_node
 node app.js
 ```
-
 Saida:
 ```cmd
-Servidor Ligado
 http://localhost:8081
 ```
 
